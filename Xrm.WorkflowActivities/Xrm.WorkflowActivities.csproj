@@ -84,7 +84,6 @@
   <ItemGroup>
     <Compile Include="Base\BaseActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleWorkflowActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
