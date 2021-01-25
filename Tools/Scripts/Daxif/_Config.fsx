@@ -11,18 +11,18 @@ open DG.Daxif.Common.Utility
   
 // Prompts the developer for a username and password the first time a script is run.
 // It then stores these credentials in a local .daxif-file.
-let creds = Credentials.FromKey("Crm9")
+//let creds = Credentials.FromKey("holger")
 
 
 // If you want to store login credentials directly in code, instead of in a local file, 
 // replace the above line with the following
-//let creds = Credentials.Create("user", "password", "domain")
+let creds = Credentials.Create("holger@anjepit.onmicrosoft.com", "1234567890GS365..", "ANJEPIT")
 
 module Env =
   let dev = 
     Environment.Create(
       name = "Development",
-      url = "http://uds-hv-eval/crm9/XRMServices/2011/Organization.svc",
+      url = "https://gs365-training.crm4.dynamics.com/XRMServices/2011/Organization.svc",
       ap = AuthenticationProviderType.OnlineFederation,
       creds = creds,
       args = fsi.CommandLineArgs
@@ -31,7 +31,7 @@ module Env =
   let test = 
     Environment.Create(
       name = "Test",
-      url = "https://mytest.crm4.dynamics.com/XRMServices/2011/Organization.svc",
+      url = "https://test.crm4.dynamics.com/XRMServices/2011/Organization.svc",
       ap = AuthenticationProviderType.OnlineFederation,
       creds = creds,
       args = fsi.CommandLineArgs
@@ -40,7 +40,7 @@ module Env =
   let prod = 
     Environment.Create(
       name = "Production",
-      url = "https://myprod.crm4.dynamics.com/XRMServices/2011/Organization.svc",
+      url = "https://prod.crm4.dynamics.com/XRMServices/2011/Organization.svc",
       ap = AuthenticationProviderType.OnlineFederation,
       creds = creds,
       args = fsi.CommandLineArgs
@@ -52,13 +52,13 @@ CRM Solution Setup
 ------------------
 *)
 module SolutionInfo =
-  let name = @"XrmSolution"
-  let displayName = @"XrmSolution"
+  let name = @"DemoSolution"
+  let displayName = @"Demo Solution"
 
 module PublisherInfo =
-  let prefix = @"test"
-  let name = @"TestPublisher"
-  let displayName = @"Test Publisher"
+  let prefix = @"demo"
+  let name = @"DemoPublisher"
+  let displayName = @"Demo Publisher"
 
 
 (** 

@@ -15,7 +15,7 @@ Solution.GenerateCSharpContext(Env.dev, xrmContext, businessDomain,
     SolutionInfo.name
     ],
   entities = [
-        "systemuser,businessunit,team,account,contact"
+        "systemuser,businessunit,team,account,contact,lead"
     ],
   extraArguments = [
     "namespace", "Xrm.Models.Crm"    

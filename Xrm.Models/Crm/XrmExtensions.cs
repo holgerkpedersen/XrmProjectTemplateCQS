@@ -75,7 +75,7 @@ namespace DG.XrmContext
             return null;
         }
 
-        protected void SetOptionSetCollectionValue<T>(string attributeName, params T[] value)
+        protected void SetOptionSetCollectionValue<T>(string attributeName, IEnumerable<T> value)
         {
             if (value != null && value.Any())
             {
@@ -182,6 +182,28 @@ namespace DG.XrmContext
             {
                 return null;
             }
+        }
+        public static string GetColumnName<T>(Expression<Func<T, object>> lambda) where T : Entity
+        {
+            MemberExpression body = lambda.Body as MemberExpression;
+
+            if (body == null)
+            {
+                UnaryExpression ubody = (UnaryExpression)lambda.Body;
+                body = ubody.Operand as MemberExpression;
+            }
+
+            if (body.Member.CustomAttributes != null)
+            {
+                var customAttributes = body.Member.GetCustomAttributesData();
+                var neededAttribute = customAttributes.FirstOrDefault(x => x.AttributeType == typeof(AttributeLogicalNameAttribute));
+                if (neededAttribute != null)
+                {
+                    return neededAttribute.ConstructorArguments.FirstOrDefault().Value.ToString();
+                }
+            }
+
+            return body.Member.Name;
         }
 
         public static T Retrieve<T>(IOrganizationService service, Guid id, params Expression<Func<T, object>>[] attributes) where T : Entity
